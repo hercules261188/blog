@@ -232,7 +232,7 @@ Photo credit <a href="https://www.flickr.com/photos/124313328@N08/26611532154">N
 <h2 id="Data">
 <a class="anchor" href="#Data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data<a class="anchor-link" href="#Data"> </a>
 </h2>
-<p>The following shows how a given image is passed through two transforms (<code>RandomResizedCrop</code>) with one guaranteed to be atleast half as large as the original image. A collate function is then used to break it up into 16x16 patches so that we can fit it into a transformer. The collate function is a minor detail in the overall picture, but if you wish to read about it you can do so <a href="https://sachinruk.github.io/blog/pytorch/data/2021/06/05/PyTorch-CollateFn.html">here</a>.</p>
+<p>The following shows how a given image is passed through two transforms (<code>RandomResizedCrop</code>) with one guaranteed to be atleast half as large as the original image. A collate function is then used to break it up into 16x16 patches, and stack those patches into a sequence, so that we can fit it into a transformer. The collate function is a minor detail in the overall picture, but if you wish to read about it you can do so <a href="https://sachinruk.github.io/blog/pytorch/data/2021/06/05/PyTorch-CollateFn.html">here</a>.</p>
 
 </div>
 </div>
@@ -429,6 +429,20 @@ Steps 1-4 being the most important aspects IMO. 5th step feels more like a trick
 </ol>
 <p>The following gif from the <a href="https://github.com/facebookresearch/dino">official repo</a> is an overview of the algorithm:
 <img src="https://github.com/facebookresearch/dino/raw/main/.github/dino.gif" alt=""></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The non-standard (and important to note) things I've done in the <code>LightningModule</code> are as follows:</p>
+<ul>
+<li>Set all parameters in <code>teacher</code> model to non-trainable.</li>
+<li>Register a buffer (not parameter) <code>center</code> to track the output of the teacher.</li>
+<li>At each <code>validation_epoch_end</code> randomly pick an image from validation set and find 5 closest images. Use these results and push it to weights and biases as a table of images.</li>
+<li>Every 50th batch save a histogram of gradients to weights and biases. This ensures that there is no gradient explosion or degredation as training evolves.</li>
+</ul>
 
 </div>
 </div>
