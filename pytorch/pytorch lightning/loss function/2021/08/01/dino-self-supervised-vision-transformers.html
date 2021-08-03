@@ -266,9 +266,26 @@ Photo credit <a href="https://www.flickr.com/photos/124313328@N08/26611532154">N
             <span class="n">img2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">img2</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">img1</span><span class="p">,</span> <span class="n">img2</span>
+</pre></div>
 
+    </div>
+</div>
+</div>
 
-<span class="k">class</span> <span class="nc">CollateFn</span><span class="p">:</span>
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description" open="">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">CollateFn</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">reshape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">):</span>
         <span class="n">patches</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>\
                     <span class="o">.</span><span class="n">unfold</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">PATCH_SIZE</span><span class="p">,</span> <span class="n">PATCH_SIZE</span><span class="p">)</span>\
@@ -298,6 +315,7 @@ Photo credit <a href="https://www.flickr.com/photos/124313328@N08/26611532154">N
 </div>
 </div>
 
+    </details>
 </div>
     
 
@@ -454,6 +472,9 @@ Steps 1-4 being the most important aspects IMO. 5th step feels more like a trick
     
     
 <div class="cell border-box-sizing code_cell rendered">
+<details class="description" open="">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
 <div class="input">
 
 <div class="inner_cell">
@@ -542,6 +563,7 @@ Steps 1-4 being the most important aspects IMO. 5th step feels more like a trick
 </div>
 </div>
 
+    </details>
 </div>
     
 
